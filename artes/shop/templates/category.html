@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% for c in page_obj %}
+    <ul>
+        <li>
+            {{ c.name }}
+            {% for s in subcat_list %}
+                {% if s.parent_id == c.id %}
+                    <ul>
+                        <li>
+                            {{ s.name }}
+                        </li>
+                    </ul>
+                {% endif %}
+            {% endfor %}
+        </li>
+    </ul>
+{% endfor %}
+{% endblock body %}

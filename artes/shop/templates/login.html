@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+
+{% block body %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Вход</button>
+</form>
+<form action="{% url 'shop:logout' %}" method="post">
+    {% csrf_token %}
+    <input type='submit' value='Выход'>
+</form>
+
+{% endblock body %}

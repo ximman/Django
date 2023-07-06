@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {% for p in page_obj %}
+    <hr></hr>
+    <li>
+        {{ p.title }}
+        <p>URL: {{ p.slug }}
+        <p>Категория: {{ p.cat }}
+        <p>Подкатегория: {{ p.subcat }}
+        <p>Цена: {{ p.price}} руб.
+        <p><img src='{{ p.photo_m.url }}'>
+        {% if is_auth %}
+            <form action="{% url 'cart:add_cart' p.id 0%}" method="post">
+                {{ cart_add_form }}
+                {% csrf_token %}
+                <input type="submit" value="Добавить в корзину">
+            </form>
+        {% endif %}
+    </li>
+    <hr></hr>
+{% endfor %}
+{% endblock body %}
